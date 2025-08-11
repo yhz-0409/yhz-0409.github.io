@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- © 2025 Asorn (https://asorn.cn). Designed and developed by Asorn. All rights reserved. -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例-雅丽</title>
+    <link rel="stylesheet" href="./css/style.min.css">
+    <link rel="shortcut icon" href="./assets/public/favicon.svg" />
+        <link href="http://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900&display=swap" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
+</head>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+        }
+        
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* 内容块样式 */
+        .content-block {
+            padding: 40px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        
+        /* 3D盒子容器 */
+        .box-container {
+            position: relative;
+            height: 250px; /* 为3D效果预留足够空间 */
+            margin: 40px auto;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        /* 3D盒子本身 */
+        #box {
+            position: relative;
+            width: 130px;
+            height: 200px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+           /* transform: rotateX(-10deg);*/
+        }
+        
+        /* 3D盒子的各个面 */
+        #box > div {
+            transform-style: preserve-3d;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            line-height: 200px;
+            font-size: 50px;
+            text-align: center;
+            box-shadow: 0 0 10px #fff;
+            -webkit-box-reflect: below 10px -webkit-linear-gradient(top, rgba(0,0,0,0) 40%, rgba(0,0,0,.8) 100%);
+        }
+        
+        /* 激活3D盒子的各个面 */
+        #box > div:nth-child(1) {
+            background: rgba(135, 206, 235, 0.7); /* skyblue */
+            transform: translate3d(0,0,300px) rotateY(45deg);
+        }
+        
+        #box > div:nth-child(2) {
+            background: rgba(255, 192, 203, 0.7); /* pink */
+            transform: rotateY(0deg);
+        }
+        
+        #box > div:nth-child(3) {
+            background: rgba(128, 0, 128, 0.7); /* purple */
+            transform: translate3d(0,0,300px) rotateY(-45deg);
+        }
+        
+        /* 底部光效 */
+        #box p {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            transform: translateX(-50%) rotateX(90deg);
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(center center, 600px 600px, rgba(50,50,50,0.8), rgba(0,0,0,0));
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+
+
+
+<body>
+    <canvas class="fireworks"></canvas>
+    <div class="head" id="headscrollbg">
+        <div class="main">
+            <div class="main-left">
+                <a href="./index.html" class="logo"><img src="./assets/public/logo_graph.svg"></a>
+                <!--<div class="tag tag-cooperate" onclick="window.location.href='./about.html'">
+                    <div class="breath-dot"></div>Contact
+                </div>-->
+            </div>
+            <div class="menu" id="main-menu">
+                <li class="magical btn nav" onclick="window.location.href='./index.html'">首页</li>
+                <li class="magical btn" onclick="window.location.href='./work.html'">案例</li>
+                <!--<li class="magical btn" onclick="window.location.href='./tool.html'">Tool</li>
+                <li class="magical btn" onclick="window.location.href='./blog.html'">Blog</li>
+                <li class="magical btn" onclick="window.location.href='./book.html'">Book</li>-->
+                <li class="magical btn" onclick="window.location.href='./about.html'">关于</li>
+            </div>
+            <div class="menu" id="menu-expand">
+                <li class="magical btn menu-expand-btn" id="menu-expand-child"><i class="icon menu-icon"></i></li>
+            </div>
+            <div id="menu-panel">
+                <div class="menu-panel-content" id="menu-panel-content"></div>
+                <div class="menu-close-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.5858 12L4.29291 18.2929L5.70712 19.7071L12 13.4142L18.2929 19.7071L19.7071 18.2929L13.4142 12L19.7071 5.70712L18.2929 4.29291L12 10.5858L5.70712 4.29291L4.29291 5.70712L10.5858 12Z"
+                            fill="#E8E8F6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="index">
+        <div class="hello">
+            <div class="hello-left">
+                <div class="title">
+                    <div class="title-hi">设计师</div>
+                    <a class="title-name text-effect">雅丽</a>
+                </div>
+                <div class="hello-introduce">
+                    <span>10年</span>设计经验 
+                </div>
+                <div class="hello-actions">
+                    <div class="magical primary-btn"><a href="./about.html" target="_blank">关于我 →</a>
+                    <div class="glowing-border"></div>
+                </div>
+                    <!--<div class="magical btn normal-btn">
+                        <a onclick="window.location.href='./about.html'">Learn more →</a>
+                        <div class="glowing-border"></div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="hello-right">
+                <div class="eyes-container">
+                    <div class="eye eye-pic-one">
+                        <div class="pupil"></div>
+                    </div>
+                    <div class="eye eye-pic-two">
+                        <div class="pupil"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="power-list-container load-pro">
+                <div class="power-list">
+                    <div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/ai.svg')"></div>
+                            <div class="title">主案设计师</div>
+                        </div>
+                    </div>
+                   <!-- <div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/tob.svg')"></div>
+                            <div class="title">My power</div>
+                        </div>
+                        <span class="power-separator"></span>
+                    </div>
+                    <div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/web.svg')"></div>
+                            <div class="title">My power</div>
+                        </div>
+                        <span class="power-separator"></span>
+                    </div>-->
+                    <!--<div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/app.svg')"></div>
+                            <div class="title">My power</div>
+                        </div>
+                        <span class="power-separator"></span>
+                    </div>
+                    <div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/assets.svg')"></div>
+                            <div class="title">My power</div>
+                        </div>
+                        <span class="power-separator"></span>
+                    </div>
+                    <div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/code.svg')"></div>
+                            <div class="title">My power</div>
+                        </div>
+                        <span class="power-separator"></span>
+                    </div>
+                    <div class="power-card load-item">
+                        <div class="power-container">
+                            <div class="card-img" style="background-image: url('./assets/index/interactive.svg')"></div>
+                            <div class="title">My power</div>
+                        </div>
+                    </div>-->
+                    <div class="power-card sticky-item" id="sticky-item">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="link-list load-pro">
+                <!--<div class="magical link-card">
+                    <a href="https://www.yuque.com/asorn" target="_blank">
+                        <img src="./assets/index/yuque.png" alt="">
+                        <div class="info">
+                            <div class="info-title">Yue Que</div>
+                            <div class="info-desc">My knowledge garden</div>
+                        </div>
+                        <div class="icon icon-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M10.55 7.58332H1.16663V6.41665H10.55L7.75415 3.62082L8.5791 2.79587L12.1645 6.3813C12.5062 6.72299 12.5062 7.27701 12.1645 7.61873L8.5791 11.2042L7.75415 10.3792L10.55 7.58332Z"
+                                    fill="#B3B3C1"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>-->
+                <!--<div class="magical link-card">
+                    <a href="https://github.com/asorn" target="_blank">
+                        <img src="./assets/index/github.png" alt="">
+                        <div class="info">
+                            <div class="info-title">Github</div>
+                            <div class="info-desc">My code garden</div>
+                        </div>
+                        <div class="icon icon-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M10.55 7.58332H1.16663V6.41665H10.55L7.75415 3.62082L8.5791 2.79587L12.1645 6.3813C12.5062 6.72299 12.5062 7.27701 12.1645 7.61873L8.5791 11.2042L7.75415 10.3792L10.55 7.58332Z"
+                                    fill="#B3B3C1"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>-->
+                <!--<div class="magical link-card">
+                    <a href="https://www.figma.com/@asorn" target="_blank">
+                        <img src="./assets/index/figma.png" alt="">
+                        <div class="info">
+                            <div class="info-title">Figma</div>
+                            <div class="info-desc">My design garden</div>
+                        </div>
+                        <div class="icon icon-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M10.55 7.58332H1.16663V6.41665H10.55L7.75415 3.62082L8.5791 2.79587L12.1645 6.3813C12.5062 6.72299 12.5062 7.27701 12.1645 7.61873L8.5791 11.2042L7.75415 10.3792L10.55 7.58332Z"
+                                    fill="#B3B3C1"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>-->
+                <div class="magical link-card">
+                    <a href="https://www.xiaohongshu.com/user/profile/584cf52750c4b45e9798896d" target="_blank">
+                        <img src="./assets/index/xiaohongshu.png" alt="">
+                        <div class="info">
+                            <div class="info-title">小红书</div>
+                            <div class="info-desc">装修小妙招</div>
+                        </div>
+                        <div class="icon icon-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M10.55 7.58332H1.16663V6.41665H10.55L7.75415 3.62082L8.5791 2.79587L12.1645 6.3813C12.5062 6.72299 12.5062 7.27701 12.1645 7.61873L8.5791 11.2042L7.75415 10.3792L10.55 7.58332Z"
+                                    fill="#B3B3C1"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="magical link-card">
+                    <a href="javascript:void(0)">
+                        <img src="./assets/index/gongzhonghao.png" alt="">
+                        <div class="info">
+                            <div class="info-title">WeChat PP</div>
+                            <div class="info-desc">Search for "biliux" on WeChat</div>
+                        </div>
+                        <div class="icon icon-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M10.55 7.58332H1.16663V6.41665H10.55L7.75415 3.62082L8.5791 2.79587L12.1645 6.3813C12.5062 6.72299 12.5062 7.27701 12.1645 7.61873L8.5791 11.2042L7.75415 10.3792L10.55 7.58332Z"
+                                    fill="#B3B3C1"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="magical link-card">
+                    <a href="https://dribbble.com/Asorn" target="_blank">
+                        <img src="./assets/index/dribbble.png" alt="">
+                        <div class="info">
+                            <div class="info-title">抖音</div>
+                            <div class="info-desc">记录美好生活</div>
+                        </div>
+                        <div class="icon icon-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M10.55 7.58332H1.16663V6.41665H10.55L7.75415 3.62082L8.5791 2.79587L12.1645 6.3813C12.5062 6.72299 12.5062 7.27701 12.1645 7.61873L8.5791 11.2042L7.75415 10.3792L10.55 7.58332Z"
+                                    fill="#B3B3C1"></path>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+             <div id="box">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<p></p>
+            </div>
+            <script>
+setTimeout(init,100);
+function init(){
+	var obox = document.getElementById('box'),
+		aDiv = obox.getElementsByTagName('div');
+		
+		for (var i = 0; i < aDiv.length; i++) {
+			aDiv[i].style.background = "url(images/"+(i+1)+".jpg) center/cover";
+			aDiv[i].style.transform = "rotateY("+(i*36)+"deg) translate3d(0,0,350px)";
+			aDiv[i].style.transition = "transform 1s "+(aDiv.length-i)*0.2+"s";
+		}
+	var sX,
+		sY,
+		nX,
+		nY,
+		desX = 0,
+		desY = 0,
+		tX = 0,
+		tY = 10,
+		index = 0;//滚轮初始值
+	document.onmousedown = function(e){
+		clearInterval(obox.timer);
+		e = e || window.event;
+		var sX = e.clientX,
+			sY = e.clientY;
+			this.onmousemove = function(e){
+				e = e || window.event;
+				var nX = e.clientX,
+					nY = e.clientY;
+					 // 当前点的坐标和前一点的坐标差值
+					desX = nX - sX;
+					desY = nY - sY;
+                    tX += desX*0.1; 
+                    tY += desY*0.1;
+
+					obox.style.transform = "rotateX("+(-tY)+"deg) rotateY("+tX+"deg)";
+					sX = nX;
+					sY = nY;
+			}
+			this.onmouseup = function(){
+				this.onmousemove = this.onmouseup = null;
+				obox.timer = setInterval(function(){
+					desX *= 0.95;
+					desY *= 0.95;
+					tX += desX*0.1;
+					tY += desY*0.1;
+					obox.style.transform = "rotateX("+(-tY)+"deg) rotateY("+tX+"deg)";
+					if (Math.abs(desX)<0.5 && Math.abs(desY)<0.5) {
+						clearInterval(obox.timer);
+					}
+				},13);
+			}
+		return false;
+	}
+	//滚轮放大缩小
+	mousewheel(document,function(e){
+		e = e || window.event;
+		var d = e.wheelDelta/120 || -e.detail/3;
+			if (d>0) {
+				index-=20;
+			}else{
+				index+=30;
+			}
+			(index<(-1050)&&(index=(-1050)));
+		document.body.style.perspective = 1000 + index + "px";
+	})
+	function mousewheel(obj,fn){
+		document.onmousewheel===null?obj.onmousewheel=fn:addEvent(obj,"DOMMouseScroll",fn)
+	}
+	function addEvent(obj,eName,fn){
+		obj.attachEvent?obj.attachEvent("on"+eName,fn):obj.addEventListener(eName,fn);
+	}
+}
+            </script>
+
+        </div>
+       
+    </div>
+
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="copyright">
+                <div>© 2025 Design by <a href="https://asorn.cn/" target="_blank">Asorn</a></div>
+                <!--<span>|</span>
+                <div class="fillings">
+                    <a href="https://asorn.cn/" target="_blank">Your filing number</a>
+                </div>-->
+            </div>
+            <!--<div class="friends">
+                <a href="https://zdo.fun/" target="_blank">ZDO</a>
+                <a href="https://larkmap.com/" target="_blank">Larkmap</a>
+                <a href="https://qingicon.com/" target="_blank">QingIcon</a>
+            </div>-->
+        </div>
+    </div>
+    <div class="widget">
+        <div class="shape-light"></div>
+        <div class="shape-star">
+            <div class="rising-stars rising-stars-visible">
+                <div style="height:1px;width:1px"></div>
+                <div style="height:2px;width:2px"></div>
+                <div style="height:1px;width:1px"></div>
+            </div>
+        </div>
+        <!--<div class="shape-earth"></div>-->
+    </div>
+    <div class="widget-top"></div>
+</body>
+<script src="./js/main.min.js"></script>
+<script src='./js/anime.js'></script>
+<script src='./js/firework.js'></script>
+</html>
