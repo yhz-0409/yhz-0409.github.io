@@ -686,10 +686,11 @@ img {
 
 .index .hello .hello-right .eyes-container .eye {
     position: relative;
-    width: 64px;
-    height: 64px;
+    width: 60vw;     /* 宽度 = 视窗宽度的 80% */
+    max-width: 718px; /* 最大不超过 800px（防止 PC 端过大） */
+    height: 30vw;     /* 高度自适应 */
     background-color: rgba(255, 255, 255, 0.04);
-    border-radius: 9999px
+    /*border-radius: 9999px*/
 }
 
 .index .hello .hello-right .eyes-container .eye .pupil {
@@ -704,8 +705,8 @@ img {
 }
 
 .index .hello .hello-right .eyes-container .eye-pic-one {
-    background-image: url(../assets/index/eye_pic_one.svg);
-    background-size: cover;
+    background-image: url(../assets/index/1.png);
+    background-size:  contain;
     background-position: center;
     background-repeat: no-repeat
 }
