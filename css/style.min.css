@@ -681,22 +681,22 @@ img {
 
 .index .hello .hello-right .eyes-container {
     display: flex;
+    width: 100%; 
     gap: 32px
 }
 
+
 .index .hello .hello-right .eyes-container .eye {
     position: relative;
-    width: 60vw;     /* 宽度 = 视窗宽度的 80% */
-    max-width: 718px; /* 最大不超过 800px（防止 PC 端过大） */
-    height: 30vw;     /* 高度自适应 */
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: rgba(#0E0E13);
     /*border-radius: 9999px*/
 }
 
+
 .index .hello .hello-right .eyes-container .eye .pupil {
     position: absolute;
-    width: 64px;
-    height: 64px;
+    width: auto;
+    height: auto;
     background: radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 100%);
     border-radius: 50%;
     left: 50%;
@@ -705,17 +705,57 @@ img {
 }
 
 .index .hello .hello-right .eyes-container .eye-pic-one {
-    background-image: url(../assets/index/1.png);
+    background-image: url(../assets/index/5.png);
+    width: 60vw;     /* 宽度 = 视窗宽度的 80% */
+    max-width: 718px; /* 最大不超过 800px（防止 PC 端过大） */
+    height: 30vw;     /* 高度自适应 */
+    min-width: 100px;
+    min-height: 100px;
     background-size:  contain;
     background-position: center;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
-
-.index .hello .hello-right .eyes-container .eye-pic-two {
-    background-image: url(../assets/index/eye_pic_two.svg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat
+/* 移动端专属适配 */
+@media (max-width: 768px) {
+  .index {
+    padding: 64px 20px;
+  }
+  
+  .index .hello {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .index .hello .hello-left,
+  .index .hello .hello-right {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .index .hello .hello-right {
+    order: 1;
+    margin-top: 24px;
+  display: flex !important; /* 确保显示 */
+  }
+  
+  .index .hello .hello-right .eyes-container {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .index .hello .hello-right .eyes-container .eye {
+    width: 60vw;
+    height: 60vw;
+    min-width: 120px;
+    min-height: 120px;
+  }
+  
+  /* 图片显示保障 */
+  .index .hello .hello-right .eyes-container .eye-pic-one {
+    background-image: url(../assets/index/5.png);
+    display: block !important;
+    background-size: 80%;
+  }
 }
 
 .index .main-content {
